@@ -24,8 +24,8 @@ export class BakendStack extends cdk.Stack {
     const provider = new cognito.UserPoolIdentityProviderGoogle(this,"MKTodosgoogleProvider",
       {
         userPool: userPool,
-        clientId:"",
-        clientSecret: "", // Google Client Secret
+        clientId:"774938795353-6hado0q9sa13hl7ojhvchvmm2hri2mre.apps.googleusercontent.com",
+        clientSecret: "znBHSznDifS3fzTXf35M2r2i", // Google Client Secret
         attributeMapping: {
           email: cognito.ProviderAttribute.GOOGLE_EMAIL,
           givenName: cognito.ProviderAttribute.GOOGLE_GIVEN_NAME,
