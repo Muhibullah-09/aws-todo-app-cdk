@@ -7,6 +7,7 @@ export const addTodo = /* GraphQL */ `
     addTodo(todo: $todo) {
       id
       title
+      user
     }
   }
 `;

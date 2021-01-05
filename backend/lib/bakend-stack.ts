@@ -12,7 +12,7 @@ export class BakendStack extends cdk.Stack {
       selfSignUpEnabled: true,
       accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
       userVerification: { emailStyle: cognito.VerificationEmailStyle.CODE},
-      autoVerify: { email: true, },
+      autoVerify: { email: true },
       standardAttributes: {
         email: {
           required: true,
@@ -21,11 +21,11 @@ export class BakendStack extends cdk.Stack {
       },
     });
 
-    const provider = new cognito.UserPoolIdentityProviderGoogle(this,"MKTodosgoogleProvider",
+    const provider = new cognito.UserPoolIdentityProviderGoogle(this,"TodosgoogleProvider",
       {
         userPool: userPool,
-        clientId:"774938795353-6hado0q9sa13hl7ojhvchvmm2hri2mre.apps.googleusercontent.com",
-        clientSecret: "znBHSznDifS3fzTXf35M2r2i", // Google Client Secret
+        clientId:"946189751283-qar9hmgh34n2k95g99bj5t21q92u612u.apps.googleusercontent.com",
+        clientSecret: "vs2NiWOpk3qAdVpyS5RIdKZH", // Google Client Secret
         attributeMapping: {
           email: cognito.ProviderAttribute.GOOGLE_EMAIL,
           givenName: cognito.ProviderAttribute.GOOGLE_GIVEN_NAME,

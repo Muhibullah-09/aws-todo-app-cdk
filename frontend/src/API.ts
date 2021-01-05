@@ -5,6 +5,7 @@
 export type TodoInput = {
   id: string,
   title: string,
+  user: string,
 };
 
 export type AddTodoMutationVariables = {
@@ -16,6 +17,7 @@ export type AddTodoMutation = {
     __typename: "Todo",
     id: string,
     title: string,
+    user: string,
   } | null,
 };
 
@@ -32,5 +34,6 @@ export type GetTodosQuery = {
     __typename: "Todo",
     id: string,
     title: string,
+    user: string,
   } > | null,
 };

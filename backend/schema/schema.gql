@@ -1,11 +1,13 @@
 type Todo {
   id: ID!
   title: String!
+  user: String!
 }
 
 input TodoInput {
   id: ID!
   title: String!
+  user: String!
 }
 
 type Query {
