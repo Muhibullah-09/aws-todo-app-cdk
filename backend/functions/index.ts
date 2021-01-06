@@ -9,19 +9,13 @@ type AppSyncEvent = {
     },
     arguments: {
         todoId: string,
-        todo: Todos
+        todo: Todo
     }
-}
-type Todos = {
-    id: string
-    title: string
-    done: string
 }
 
 exports.handler = async (event: AppSyncEvent) => {
     switch (event.info.fieldName) {
         case "addTodo":
-            event.arguments.todo.id = "mk"+ Math.random();
             return await addTodo(event.arguments.todo);
         case "getTodos":
             return await getTodos();

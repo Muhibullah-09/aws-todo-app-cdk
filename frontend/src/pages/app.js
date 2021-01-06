@@ -7,7 +7,7 @@ import { API } from "aws-amplify";
 import { IdentityContext } from "../../Identity-Context";
 import Navbar from "../components/Navbar";
 import { Link } from 'gatsby';
-import { Box, Button, Container, Flex, Heading, Input, Label, NavLink } from "theme-ui";
+import { Button, Heading, Input, Label, NavLink, Text } from "theme-ui";
 
 const Dash = () => {
     const { user } = useContext(IdentityContext);
@@ -20,6 +20,7 @@ const Dash = () => {
             const todo = {
                 id: 'mk' + Math.random(),
                 title: todoTitleRef.current.value,
+                user: user.username
             }
             await API.graphql({
                 query: addTodo,
@@ -52,29 +53,32 @@ const Dash = () => {
     return (
         <div>
             {loading ? (
-                <h1>Loading ...</h1>
+                <Heading as="h3" sx={{ textAlign: "center" }}>Loading...</Heading>
             ) : (
                     <div>
-                        <Navbar />
-                        <label>
-                            Todo:
-                        <input ref={todoTitleRef} />
-                        </label>
-                        <button onClick={() => addTodoMutation()}>Create Todo</button>
+                        <Navbar /><br /><br />
+                        <Heading as="h3" sx={{ textAlign: "center" }}>Make Schedule Easy</Heading>
+                        <Label>
+                            <Input ref={todoTitleRef} />
+                        </Label><br />
+                        <Button sx={{ color: "black", textAlign: "center" }} onClick={() => addTodoMutation()}>Create Todo</Button><br /><br />
+                        <Heading as="h2" sx={{ textAlign: "center" }}>Your Todo List</Heading>
                         {todoData.data &&
                             todoData.data.getTodos.filter((todo) => todo.user === user.username).map((item, ind) => (
                                 <div style={{ marginLeft: "1rem", marginTop: "2rem" }} key={ind}>
-                                    {item.title}
+                                    <Text sx={{ fontSize: 4, fontWeight: 'italic', margin: '5px'}}>{item.title}</Text>
                                     <div>
-                                        <button onClick={async e => {
-                                            e.preventDefault();
-                                            await API.graphql({
-                                                query: deleteTodo,
-                                                variables: { todoId: item.id },
-                                            })
-                                            fetchTodos();
-                                        }}
-                                        >Delete</button>
+                                        <Button
+                                            sx={{ color: "black", textAlign: "center" }}
+                                            onClick={async e => {
+                                                e.preventDefault();
+                                                await API.graphql({
+                                                    query: deleteTodo,
+                                                    variables: { todoId: item.id },
+                                                })
+                                                fetchTodos();
+                                            }}
+                                        >Delete Todo</Button>
                                     </div>
                                 </div>
                             ))}

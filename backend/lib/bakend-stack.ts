@@ -3,6 +3,10 @@ import * as appsync from '@aws-cdk/aws-appsync';
 import * as dynamodb from '@aws-cdk/aws-dynamodb';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as cognito from '@aws-cdk/aws-cognito';
+import * as cloudfront from "@aws-cdk/aws-cloudfront";
+import * as origins from "@aws-cdk/aws-cloudfront-origins";
+import * as s3 from "@aws-cdk/aws-s3";
+import * as s3deploy from "@aws-cdk/aws-s3-deployment";
 
 export class BakendStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -21,7 +25,7 @@ export class BakendStack extends cdk.Stack {
       },
     });
 
-    const provider = new cognito.UserPoolIdentityProviderGoogle(this,"TodosgoogleProvider",
+    const provider = new cognito.UserPoolIdentityProviderGoogle(this,"googleProvider",
       {
         userPool: userPool,
         clientId:"946189751283-qar9hmgh34n2k95g99bj5t21q92u612u.apps.googleusercontent.com",
@@ -35,12 +39,11 @@ export class BakendStack extends cdk.Stack {
       }
     );
     userPool.registerIdentityProvider(provider);
-
     const userPoolClient = new cognito.UserPoolClient(this, "todoamplifyClient", {
       userPool,
       oAuth: {
-        callbackUrls: ["http://localhost:8000/"], // This is what user is allowed to be redirected to with the code upon signin. this can be a list of urls.
-        logoutUrls: ["http://localhost:8000/"], // This is what user is allowed to be redirected to after signout. this can be a list of urls.
+        callbackUrls: ["http://d16gz8068ih3c.cloudfront.net"], // This is what user is allowed to be redirected to with the code upon signin. this can be a list of urls.
+        logoutUrls: ["http://d16gz8068ih3c.cloudfront.net"], // This is what user is allowed to be redirected to after signout. this can be a list of urls.
       },
     });
 
@@ -97,7 +100,7 @@ export class BakendStack extends cdk.Stack {
         type: dynamodb.AttributeType.STRING,
       },
     });
-    todosTable.grantFullAccess(todosLambda)
+    todosTable.grantFullAccess(todosLambda);
     todosLambda.addEnvironment('TODOS_TABLE', todosTable.tableName);
 
     //Here we define resolvers for queries and for mutations
@@ -126,5 +129,34 @@ export class BakendStack extends cdk.Stack {
       value: Todo_API.apiKey || ''
     });
 
+    //here I define s3 bucket 
+    const todosBucket = new s3.Bucket(this, "todosBucket", {
+      versioned: true,
+    });
+
+    todosBucket.grantPublicAccess(); // website visible to all.
+
+    // create a CDN to deploy your website
+    const distribution = new cloudfront.Distribution(this, "TodosDistribution", {
+      defaultBehavior: {
+        origin: new origins.S3Origin(todosBucket),
+      },
+      defaultRootObject: "index.html",
+    });
+
+
+    // Prints out the web endpoint to the terminal
+    new cdk.CfnOutput(this, "DistributionDomainName", {
+      value: distribution.domainName,
+    });
+
+
+    // housekeeping for uploading the data in bucket 
+    new s3deploy.BucketDeployment(this, "DeployTodoApp", {
+      sources: [s3deploy.Source.asset("../frontend/public")],
+      destinationBucket: todosBucket,
+      distribution,
+      distributionPaths: ["/*"],
+    });
   }
 };
