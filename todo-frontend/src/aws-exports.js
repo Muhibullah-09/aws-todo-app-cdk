@@ -13,8 +13,8 @@ const awsmobile = {
     oauth: {
       domain: "muhib-todos.auth.us-east-2.amazoncognito.com", // ENTER YOUR COGNITO DOMAIN LIKE: eru-test-pool.auth.eu-west-1.amazoncognito.com here 'eru-test-pool' is the domainPrefix I had set in the backend.
       scope: ["phone", "email", "openid", "profile"],
-      redirectSignIn: "http://localhost:8000/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
-      redirectSignOut: "http://localhost:8000/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
+      redirectSignIn: "https://d16gz8068ih3c.cloudfront.net/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
+      redirectSignOut: "https://d16gz8068ih3c.cloudfront.net/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
       responseType: "code",
     },
     federationTarget: "COGNITO_USER_POOLS",
