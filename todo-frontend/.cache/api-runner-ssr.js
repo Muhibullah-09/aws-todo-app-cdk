@@ -1,5 +1,5 @@
 var plugins = [{
-      plugin: require('/home/muhib/Muheeb/Hello/aws-todo-app-cdk/frontend/gatsby-ssr'),
+      plugin: require('/home/muhib/Muheeb/Hello/aws-todo-app-cdk/todo-frontend/gatsby-ssr'),
       options: {"plugins":[]},
     }]
 // During bootstrap, we write requires at top of this file which looks like:

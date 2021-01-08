@@ -42,8 +42,8 @@ export class BakendStack extends cdk.Stack {
     const userPoolClient = new cognito.UserPoolClient(this, "todoamplifyClient", {
       userPool,
       oAuth: {
-        callbackUrls: ["https://d16gz8068ih3c.cloudfront.net/"], // This is what user is allowed to be redirected to with the code upon signin. this can be a list of urls.
-        logoutUrls: ["https://d16gz8068ih3c.cloudfront.net/"], // This is what user is allowed to be redirected to after signout. this can be a list of urls.
+        callbackUrls: ["https://dh1f975lf4qwc.cloudfront.net/"], // This is what user is allowed to be redirected to with the code upon signin. this can be a list of urls.
+        logoutUrls: ["https://dh1f975lf4qwc.cloudfront.net/"], // This is what user is allowed to be redirected to after signout. this can be a list of urls.
       },
     });
 
@@ -153,7 +153,7 @@ export class BakendStack extends cdk.Stack {
 
     // housekeeping for uploading the data in bucket 
     new s3deploy.BucketDeployment(this, "DeployTodoApp", {
-      sources: [s3deploy.Source.asset("../frontend/public")],
+      sources: [s3deploy.Source.asset("../todo-frontend/public")],
       destinationBucket: todosBucket,
       distribution,
       distributionPaths: ["/*"],
