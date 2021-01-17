@@ -11,5 +11,5 @@ projects:
         generatedFileName: src/API.ts
         docsFilePath: src/graphql
         region: us-east-2
-        apiId: 4msg4pfigvd3no2xokdbzmwboe
+        apiId: 6t2ai4jozvep5o4n556sdrzg64
         maxDepth: 2

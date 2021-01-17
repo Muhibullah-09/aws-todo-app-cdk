@@ -3,19 +3,19 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-2",
-    "aws_appsync_graphqlEndpoint": "https://xlm6jqmffzdsfcjjalyugcknwm.appsync-api.us-east-2.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://j4odyolfu5f6fhrmlw7btx2mzi.appsync-api.us-east-2.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-2",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-pmkymkpctfhxrosmtwcfiqs53q",
+    "aws_appsync_apiKey": "da2-rqgrezjf3za5dmf73dmz4uvq2e",
     aws_cognito_region: "us-east-2", // REGION
-    aws_user_pools_id: "us-east-2_Q2EziObmg", // ENTER YOUR USER POOL ID
-    aws_user_pools_web_client_id: "4fe8p26hb62a74rlhf1mq5oaeo", // ENTER YOUR CLIENT ID
+    aws_user_pools_id: "us-east-2_0nPgGPb4i", // ENTER YOUR USER POOL ID
+    aws_user_pools_web_client_id: "r1p73gsg3fg4upetujcmcqp2l", // ENTER YOUR CLIENT ID
     oauth: {
-      domain: "muhib-todos.auth.us-east-2.amazoncognito.com", // ENTER YOUR COGNITO DOMAIN LIKE: eru-test-pool.auth.eu-west-1.amazoncognito.com here 'eru-test-pool' is the domainPrefix I had set in the backend.
-      scope: ["phone", "email", "openid", "profile"],
-      redirectSignIn: "https://dh1f975lf4qwc.cloudfront.net/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
-      redirectSignOut: "https://dh1f975lf4qwc.cloudfront.net/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
-      responseType: "code",
+        domain: "muhib-todos.auth.us-east-2.amazoncognito.com", // ENTER YOUR COGNITO DOMAIN LIKE: eru-test-pool.auth.eu-west-1.amazoncognito.com here 'eru-test-pool' is the domainPrefix I had set in the backend.
+        scope: ["phone", "email", "openid", "profile"],
+        redirectSignIn: "https://d29vjdjqkukohb.cloudfront.net/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
+        redirectSignOut: "https://d29vjdjqkukohb.cloudfront.net/", // ENTER YOUR SITE (enter http://localhost:8000 if testing frontend locally)
+        responseType: "code",
     },
     federationTarget: "COGNITO_USER_POOLS",
 };

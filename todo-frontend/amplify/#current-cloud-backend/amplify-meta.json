@@ -22,13 +22,13 @@
                     },
                     "additionalAuthenticationProviders": null
                 },
-                "GraphQLAPIIdOutput": "4msg4pfigvd3no2xokdbzmwboe",
-                "GraphQLAPIEndpointOutput": "https://xlm6jqmffzdsfcjjalyugcknwm.appsync-api.us-east-2.amazonaws.com/graphql",
+                "GraphQLAPIIdOutput": "6t2ai4jozvep5o4n556sdrzg64",
+                "GraphQLAPIEndpointOutput": "https://j4odyolfu5f6fhrmlw7btx2mzi.appsync-api.us-east-2.amazonaws.com/graphql",
                 "name": "cdk-todos-appsync-api",
                 "region": "us-east-2",
-                "GraphQLAPIKeyOutput": "da2-pmkymkpctfhxrosmtwcfiqs53q"
+                "GraphQLAPIKeyOutput": "da2-rqgrezjf3za5dmf73dmz4uvq2e"
             },
-            "lastPushTimeStamp": "2021-01-08T04:33:00.009Z"
+            "lastPushTimeStamp": "2021-01-14T02:32:50.322Z"
         }
     }
 }
